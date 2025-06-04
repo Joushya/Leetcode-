@@ -1,0 +1,12 @@
+class Solution:
+    def productExceptSelf(self, nums):
+        n = len(nums)
+        r = [1] * n
+        l = ri = 1
+        for i in range(n):
+            r[i] *= l
+            l *= nums[i]
+        for i in range(n-1, -1, -1):
+            r[i] *= ri
+            ri *= nums[i]
+        return r
