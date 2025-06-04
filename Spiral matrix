@@ -1,0 +1,11 @@
+class Solution:
+    def spiralOrder(self, matrix):
+        r, t, b, l, ri = [], 0, len(matrix)-1, 0, len(matrix[0])-1
+        while t <= b and l <= ri:
+            r += matrix[t][l:ri+1]; t += 1
+            r += [matrix[i][ri] for i in range(t, b+1)]; ri -= 1
+            if t <= b:
+                r += matrix[b][l:ri+1][::-1]; b -= 1
+            if l <= ri:
+                r += [matrix[i][l] for i in range(b, t-1, -1)]; l += 1
+        return r
