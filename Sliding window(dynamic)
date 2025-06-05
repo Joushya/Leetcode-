@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Main
+{
+    public static int MaxsubArr(int[] a,int k){
+        int wsum=0;
+        int msum=Integer.MIN_VALUE;
+        int sindex=0;
+        for(int i=0;i<k;i++){
+            wsum+=a[i];
+            
+        }
+        msum=wsum;
+        sindex=0;
+        for(int i=k;i<a.length;i++){
+            wsum=wsum-a[i-k]+a[i];
+             if (wsum > msum) {
+                msum = wsum;
+                sindex = i - k + 1;
+            }
+        }
+        System.out.println("The max sub array is:");
+        for(int i=sindex;i<sindex+k;i++){
+          System.out.println(a[i]+" ");
+        }
+        System.out.println();
+        return msum;
+    }
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    System.out.println("Enter window size:");
+	    int k=sc.nextInt();
+	    System.out.println("Enter n value:");
+	    int n=sc.nextInt();
+	    int[] a=new int[n];
+	    System.out.println("Enter array elements:");
+	    for(int i=0;i<n;i++){
+	        a[i]=sc.nextInt();
+	    }
+	    
+	    
+	    System.out.print(MaxsubArr(a,k));
+	    
+	}
+}
